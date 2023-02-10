@@ -1,6 +1,7 @@
 #ifndef __VECTOR_2D_H__
 #define __VECTOR_2D_H__
-#include <math.h>
+
+#include <cmath>
 
 struct Vector2D
 {
