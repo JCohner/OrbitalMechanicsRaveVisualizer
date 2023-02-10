@@ -4,7 +4,7 @@
 
 #include "lin_alg/Vector2D.h"
 #include "gl_visualizer/Canvas.h"
-#include "gl_visualizer/visual_objects/Ball.h"
+#include "entities/Ball.h"
 
 int main(){
   // make a ball object to visualize

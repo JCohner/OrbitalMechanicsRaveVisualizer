@@ -12,7 +12,7 @@
 #include <queue>
 #include <memory>
 
-#include "gl_visualizer/visual_objects/Shape.h"
+#include "entities/Shape.h"
 
 class Canvas {
 private:

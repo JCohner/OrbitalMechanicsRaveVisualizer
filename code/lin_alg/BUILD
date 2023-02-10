@@ -10,7 +10,8 @@ cc_library(
     ":vector_2d",
   ],
   visibility = [
-    "//gl_visualizer:__subpackages__",
+    "//gl_visualizer:__pkg__",
     "//lin_alg/tests:__pkg__",
+    "//entities:__pkg__",
   ],
 )

@@ -1,0 +1,3 @@
+SHELL:=/bin/bash
+VERSION=0x03
+DEBUG ?= 0

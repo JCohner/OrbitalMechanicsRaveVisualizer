@@ -10,7 +10,7 @@ cc_library(
   ],
   deps = [
     "//lin_alg:lin_alg",
-    "//gl_visualizer/visual_objects:visual_objects",
+    "//entities:visual_objects",
   ],
 )
 
@@ -19,6 +19,6 @@ cc_binary(
   srcs = ["tests/test_draw.cpp"],
   deps = [
     ":gl_visualizer",
-    "//gl_visualizer/visual_objects:visual_objects",
+    "//entities:visual_objects",
   ],
 )
