@@ -9,6 +9,10 @@
 
 #include <iostream>
 #include <thread>
+#include <queue>
+#include <memory>
+
+#include "gl_visualizer/visual_objects/Shape.h"
 
 class Canvas {
 private:
@@ -16,30 +20,35 @@ private:
   int current_width_ = 800;
   int current_height_ = 600;
 
-  int window_handle_ = 0;
-  unsigned frame_count_ = 0;
-
-  // TODO probably only needed by owner of canvas class...
-  GLfloat ballRadius = 0.5f;   // Radius of the bouncing ball
-  GLfloat ballX = 250.0f;         // Ball's center (x, y) position
-  GLfloat ballY = 250.0f;
+  int window_handle_;
+  unsigned frame_count_;
 
   std::thread work_thread_;
 
   void Initialize();
   void InitWindow();
-  void ResizeFunction(int, int);
-  void RenderFunction(void);
-
-  void TimerFunction(int);
-  void IdleFunction(void);
-
   
+  /* Static Callback Functions for FreeGLUT event handling */  // Unfortunately GLUT callback functions need to be static. TODO: figure out better workaround
+  static void ResizeFunction(int, int);
+  static void RenderFunction(void);
+  static void TimerFunction(int);
+  static void IdleFunction(void);
+  static Canvas* instance_;
+  
+  int WorkThread();
+
+  // quue of objects to be rendered in render thread
+  std::vector<std::shared_ptr<Shape>> work_queue_;
 
 public:
-
-
-}
+  int CurrentHeight() {return current_height_;}
+  int CurrentWidth() {return current_width_;}
+  static Canvas* GetInstance(int w = 800, int h = 600);
+  Canvas(int width, int height) : current_width_(width), current_height_(height) {
+    window_handle_ = 0;
+    frame_count_ = 0;
+  }
+};
 
 
 #endif

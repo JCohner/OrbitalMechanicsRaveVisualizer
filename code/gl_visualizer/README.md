@@ -12,6 +12,9 @@ API reference used here:
 ### Schema
 `Canvas` class provides an interface to OpenGl calls to create canvas and populate canvas with entities.
 
+#### Visual Objects 
+//TODO: put words here 
+
 ### Dev Machine Setup:
 Debian packages I installed to get developlment library for OpenGL
 `mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev`
