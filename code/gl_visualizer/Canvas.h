@@ -41,6 +41,8 @@ private:
   std::vector<std::shared_ptr<Shape>> work_queue_;
 
 public:
+  void StartWork() {work_thread_ = std::thread(&Canvas::WorkThread, this);}
+  void EnqueueShape(std::shared_ptr<Shape> shape) {work_queue_.push_back(shape);}
   int CurrentHeight() {return current_height_;}
   int CurrentWidth() {return current_width_;}
   static Canvas* GetInstance(int w = 800, int h = 600);

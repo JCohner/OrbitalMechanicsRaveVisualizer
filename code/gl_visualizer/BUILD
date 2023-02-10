@@ -5,7 +5,8 @@ cc_library(
   linkopts = ["-lglut",
               "-lGLU",
               "-lGL",
-              "-lGLEW"
+              "-lGLEW",
+              "-lpthread"
   ],
   deps = [
     "//lin_alg:lin_alg",
