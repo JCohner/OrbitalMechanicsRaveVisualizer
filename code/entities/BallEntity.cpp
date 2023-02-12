@@ -1,6 +1,6 @@
 #include <GL/freeglut.h>
 
-#include "Ball.h"
+#include "BallEntity.h"
 
 void Ball::Render(){
   /*

@@ -11,6 +11,7 @@ cc_library(
   deps = [
     "//lin_alg:lin_alg",
     "//entities:visual_objects",
+    "//entities:entity_manager",
   ],
 )
 
