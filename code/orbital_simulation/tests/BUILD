@@ -10,16 +10,17 @@ cc_test(
   ],
 )
 
-cc_test(
+cc_binary(
   name = "orbital_engine_test",
   srcs = ["orbital-engine-test.cpp"],
-  size = "small",
   deps = [
-    "@gtest//:gtest_main",
-    "@gtest//:gtest",
     "//lin_alg:lin_alg",
     "//orbital_simulation:orbital_state",
     "//orbital_simulation:orbital_engine",
     "//entities:entity_object",
+    "//entities:ball_entity",
+  ],
+  linkopts = [
+    "-lpthread",
   ],
 )

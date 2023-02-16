@@ -1,14 +1,21 @@
-#include <gtest/gtest.h>
-#include <memory>
+#include <iostream>
 #include "lin_alg/Vector2D.h"
 #include "orbital_simulation/State.h"
+#include "entities/BallEntity.h"
 #include "orbital_simulation/Engine.h"
-#include "entities/EntityObject.h"
+int main(){
+  auto s = new Engine();
+  s->StartWork();
 
-TEST(OrbitalSimEngine, Engine) {
-  auto s = Engine();
-  auto ball_pos = v2d(250, 250);
-  auto ball = std::make_shared<Entity>();
-  s.EnqueueEntity(ball);
-  s.StartWork();
-}
+  auto b = std::make_shared<Ball>(5);
+
+  // s->EnqueueEntity()
+
+
+  while(1){
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+
+  return 0;
+
+} 
