@@ -51,7 +51,7 @@ void Canvas::InitWindow()
     exit(EXIT_FAILURE);
   }
 
-  glutReEntityFunc(&Canvas::ResizeFunction);
+  glutReshapeFunc(&Canvas::ResizeFunction);
   glutDisplayFunc(RenderFunction);
 
   glutIdleFunc(IdleFunction);

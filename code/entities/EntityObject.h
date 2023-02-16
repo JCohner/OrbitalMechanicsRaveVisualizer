@@ -8,7 +8,7 @@
 class Entity {
 public:
   enum Type {NONE = 0, BALL = 1 };
-  Entity () : type_(Entity::Type::NONE) {}
+  Entity () : type_(Entity::Type::NONE), centroid_(v2d(0,0)) {}
   Entity (Entity::Type type, v2d pos) : type_(type), centroid_(pos ) {}
   /* Accessors */
   Entity::Type GetType() {return type_;}
