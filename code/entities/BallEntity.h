@@ -1,11 +1,11 @@
 #ifndef __BALL_H__
 #define __BALL_H__
 
-#include "Shape.h" 
+#include "EntityObject.h" 
 
-class Ball : public Shape {
+class Ball : public Entity {
 public:
-  Ball (double rad, Vector2D pos) : Shape(Shape::Type::BALL, pos), radius_(rad) {}
+  Ball (double rad, v2d pos) : Entity(Entity::Type::BALL, pos), radius_(rad) {}
   double GetRadius() {return radius_;}
   void Render() override;
 private:

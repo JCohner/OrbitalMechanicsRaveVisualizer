@@ -110,7 +110,7 @@ void Canvas::RenderFunction(void)
   glClear(GL_COLOR_BUFFER_BIT);  // Clear the color buffer
   glMatrixMode(GL_MODELVIEW);    // To operate on the model-view matrix, all calls are translated
 
-  for (auto obj : instance_->work_queue_){
+  for (auto obj : instance_->entity_queue_){
     glLoadIdentity();              // Reset model-view matrix
     obj->Render();
   }

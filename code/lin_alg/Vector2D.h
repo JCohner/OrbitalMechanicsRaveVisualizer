@@ -2,28 +2,30 @@
 #define __VECTOR_2D_H__
 
 #include <cmath>
+#include <ostream>
 
-struct Vector2D
+struct v2d
 {
     double x = 0.0;
     double y = 0.0;
-    Vector2D() : x(0), y(0) {}
-    Vector2D(double x, double y) : x(x), y(y) {}
+    v2d() : x(0), y(0) {}
+    v2d(double x, double y) : x(x), y(y) {}
     double length();
-    double distance(const Vector2D & vec);
+    double distance(const v2d & vec);
     double angle();
 };
 
-Vector2D operator+(Vector2D lhs, const Vector2D & rhs);
-Vector2D& operator+=(Vector2D& lhs, const Vector2D & rhs);
-Vector2D operator-(Vector2D lhs, const Vector2D & rhs);
-Vector2D& operator-=(Vector2D& lhs, const Vector2D & rhs);
+v2d operator+(v2d lhs, const v2d & rhs);
+v2d& operator+=(v2d& lhs, const v2d & rhs);
+v2d operator-(v2d lhs, const v2d & rhs);
+v2d& operator-=(v2d& lhs, const v2d & rhs);
 
-Vector2D operator*(double lhs, const Vector2D & rhs);
-Vector2D& operator*=(double lhs, const Vector2D & rhs);
-Vector2D operator*(Vector2D lhs, double rhs);
-Vector2D& operator*=(Vector2D& lhs, double rhs);
+v2d operator*(double lhs, const v2d & rhs);
+v2d& operator*=(double lhs, const v2d & rhs);
+v2d operator*(v2d lhs, double rhs);
+v2d& operator*=(v2d& lhs, double rhs);
 
-bool operator==(const Vector2D & lhs, const Vector2D & rhs);
+bool operator==(const v2d & lhs, const v2d & rhs);
 
+std::ostream & operator<<(std::ostream & os, const v2d & v);
 #endif /* __VECTOR_2D_H__ */
