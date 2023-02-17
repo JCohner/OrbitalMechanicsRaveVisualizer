@@ -1,15 +1,17 @@
 #include <iostream>
 #include "lin_alg/Vector2D.h"
 #include "orbital_simulation/State.h"
-#include "entities/BallEntity.h"
 #include "orbital_simulation/Engine.h"
+
 int main(){
   auto s = new Engine();
   s->StartWork();
 
-  auto b = std::make_shared<Ball>(5);
+  auto pos = v2d(100,100);
 
-  // s->EnqueueEntity()
+  auto b = std::make_shared<State>(10, pos);
+
+  s->EnqueueEntity(b);
 
 
   while(1){

@@ -17,8 +17,6 @@ cc_binary(
     "//lin_alg:lin_alg",
     "//orbital_simulation:orbital_state",
     "//orbital_simulation:orbital_engine",
-    "//entities:entity_object",
-    "//entities:ball_entity",
   ],
   linkopts = [
     "-lpthread",

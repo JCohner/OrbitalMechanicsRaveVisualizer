@@ -23,19 +23,6 @@ cc_library(
   ]
 )
 
-
-cc_library(
-  name = "invis_entity",
-  srcs = ["InvisEntity.cpp"],
-  hdrs = ["InvisEntity.h"],
-  deps = [
-    ":invis_object",
-  ],
-  visibility = [
-    "//orbital_simulation/tests:__pkg__",
-  ]
-)
-
 # publicly visible lib
 cc_library(
   name = "entity_objects",
@@ -43,17 +30,4 @@ cc_library(
     ":ball_entity",
   ],
   visibility = ["//visibility:public"],
-)
-
-cc_library(
-  name = "entity_manager",
-  # srcs = ["EntityManager.cpp"],
-  hdrs = ["EntityManager.h"],
-  visibility = [
-    "//orbital_simulation:__pkg__",
-    "//gl_visualizer:__pkg__",
-  ],
-  deps = [
-    ":entity_object"
-  ]
 )

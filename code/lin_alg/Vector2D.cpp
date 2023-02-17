@@ -51,3 +51,11 @@ v2d operator*(double lhs, const v2d & rhs){
 bool operator==(const v2d & lhs, const v2d & rhs){
   return ((lhs.x - rhs.x == 0) && (lhs.y - rhs.y == 0));
 }
+
+//outstream op overload for vectors
+std::ostream & operator<<(std::ostream & os, const v2d & v)
+{
+  os << "x: " << v.x << "\t";
+  os << "y: " << v.y << "\n";
+  return os;
+} 

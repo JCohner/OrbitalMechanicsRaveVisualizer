@@ -2,6 +2,7 @@
 #define __VECTOR_2D_H__
 
 #include <cmath>
+#include <ostream>
 
 struct v2d
 {
@@ -26,4 +27,5 @@ v2d& operator*=(v2d& lhs, double rhs);
 
 bool operator==(const v2d & lhs, const v2d & rhs);
 
+std::ostream & operator<<(std::ostream & os, const v2d & v);
 #endif /* __VECTOR_2D_H__ */

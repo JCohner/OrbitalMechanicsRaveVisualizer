@@ -13,6 +13,9 @@ cc_library(
     "//entities:entity_objects",
     "//entities:entity_manager",
   ],
+  visibility = [
+    "//orbital_simulation/tests:__pkg__",
+  ]
 )
 
 cc_binary(

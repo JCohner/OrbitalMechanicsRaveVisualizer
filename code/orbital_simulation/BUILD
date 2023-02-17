@@ -18,6 +18,6 @@ cc_library(
     "//orbital_simulation/tests:__pkg__",
   ],
   deps = [
-    "//entities:entity_manager"
+    ":orbital_state"
   ]
 )
