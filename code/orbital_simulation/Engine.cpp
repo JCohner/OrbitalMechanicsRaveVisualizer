@@ -1,11 +1,30 @@
 #include "Engine.h"
+#include <functional>
+#include <memory>
 
 #include <iostream>
 
+
 void Engine::WorkFunction(){
-    for (auto ent : entity_queue_){
-      std::cout << "loopin through boys: " << ent->GetMass() << std::endl;
+  auto compute_force = [](std::shared_ptr<State> s1, std::shared_ptr<State> s2){
+    const double G = 6.6742e-11;
+    auto dist = s1->GetPos().distance(s2->GetPos());
+    std::cout << "distance is: " << dist << std::endl;
+    return G * s1->GetMass() * s2->GetMass() / std::pow(dist, 2);
+  };
+
+  // todo find some smart way to do this using an agency matrix
+  for (auto ent : entity_queue_){
+    auto force_vec = v2d(); 
+    std::cout << "loopin through boys: " << ent->GetMass() << std::endl;
+    for (auto comp_ent : entity_queue_){
+      if (ent == comp_ent){
+        std::cout << "\tyeah fuckk (good variant)" << std::endl; 
+        continue;
+      }
+      std::cout << "\tcomparing to this john: " << compute_force(ent, comp_ent) << std::endl;
     }
+  }
 }
 
 //runs simulation on all managed entities

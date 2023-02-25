@@ -9,6 +9,12 @@ double v2d::length(){
   return len;
 }
 
+v2d v2d::unit_vec_to(const v2d & vec){
+  auto dist = this->distance(vec);
+  auto vec_between = (*this - vec);
+  return 1.0/dist * vec_between;
+}
+
 double v2d::distance(const v2d & vec){
   //taking this to be the distance between the endpoints of the vectors
   double delta_x = this->x - vec.x;
@@ -48,8 +54,9 @@ v2d operator*(double lhs, const v2d & rhs){
   return vec;
 }
 
+// double comparison things
 bool operator==(const v2d & lhs, const v2d & rhs){
-  return ((lhs.x - rhs.x == 0) && (lhs.y - rhs.y == 0));
+  return ((abs(lhs.x - rhs.x) < 1e-10) && ((abs(lhs.y - rhs.y) < 1e-10)));
 }
 
 //outstream op overload for vectors
