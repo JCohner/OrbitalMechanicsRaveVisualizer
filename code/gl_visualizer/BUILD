@@ -10,9 +10,8 @@ cc_library(
   ],
   deps = [
     "//lin_alg:lin_alg",
-    "//entities:entity_objects",
-    "//entities:entity_manager",
-  ],
+    "//shapes:shapes",  
+    ],
   visibility = [
     "//orbital_simulation/tests:__pkg__",
   ]
@@ -23,6 +22,6 @@ cc_binary(
   srcs = ["tests/test_draw.cpp"],
   deps = [
     ":gl_visualizer",
-    "//entities:entity_objects",
+    "//shapes:shapes",
   ],
 )

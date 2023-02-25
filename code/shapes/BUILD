@@ -1,22 +1,27 @@
 # visual object base class
 cc_library(
-  name = "entity_object",
-  srcs = ["EntityObject.cpp"],
-  hdrs = ["EntityObject.h"],
+  name = "shape",
+  srcs = ["Shape.cpp"],
+  hdrs = ["Shape.h"],
   deps = [
     "//lin_alg:lin_alg",
   ],
+  linkopts = ["-lglut",
+            "-lGLU",
+            "-lGL",
+            "-lGLEW",
+            "-lpthread"],
   visibility = [
     "//orbital_simulation/tests:__pkg__",
   ]
 )
 
 cc_library(
-  name = "ball_entity",
-  srcs = ["BallEntity.cpp"],
-  hdrs = ["BallEntity.h"],
+  name = "circle-shape",
+  srcs = ["Circle.cpp"],
+  hdrs = ["Circle.h"],
   deps = [
-    ":entity_object",
+    ":shape",
   ],
   visibility = [
     "//orbital_simulation/tests:__pkg__",
@@ -25,9 +30,9 @@ cc_library(
 
 # publicly visible lib
 cc_library(
-  name = "entity_objects",
+  name = "shapes",
   deps = [
-    ":ball_entity",
+    ":circle-shape",
   ],
   visibility = ["//visibility:public"],
 )

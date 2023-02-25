@@ -4,6 +4,7 @@
 #include <thread>
 #include <iostream> // debug
 #include <chrono>
+#include <vector>
 
 #include "State.h"
 
@@ -12,7 +13,10 @@ class Engine {
 private:
   // quue of objects to be rendered in render thread
   std::vector<std::shared_ptr<State>> entity_queue_;
-  void WorkThread();
+
+  void WorkThread(); // thread spawned as workthread
+  void WorkFunction(); // function that does simulation
+  
   std::thread work_thread_;
   bool is_running_ = false;
 
@@ -29,7 +33,7 @@ public:
     work_thread_.join();
     std::cout << "joined workthread" << std::endl;
   }
-  void EnqueueEntity(std::shared_ptr<State> entity) {entity_queue_.push_back(entity);}
+  void EnqueueEntity(std::shared_ptr<State> entity);
 };
 
 

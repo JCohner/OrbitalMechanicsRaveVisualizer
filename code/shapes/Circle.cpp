@@ -1,8 +1,8 @@
 #include <GL/freeglut.h>
 
-#include "BallEntity.h"
+#include "Circle.h"
 
-void Ball::Render(){
+void Circle::Render(){
   /*
   https://docs.gl/gl3/glTranslate
   f the matrix mode is either GL_MODELVIEW or GL_PROJECTION, all objects drawn after a call to glTranslate are translated. 
