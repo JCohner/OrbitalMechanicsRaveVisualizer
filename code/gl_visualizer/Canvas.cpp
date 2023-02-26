@@ -29,7 +29,7 @@ void Canvas::Initialize()
 
 void Canvas::InitWindow()
 {
-  int nonya = 0;
+  int nonya = 1;
   glutInit(&nonya, 0);
 
   glutSetOption(

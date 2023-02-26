@@ -13,6 +13,7 @@ struct v2d
     double length();
     double distance(const v2d & vec);
     double angle();
+    v2d unit_vec_to(const v2d & vec);
 };
 
 v2d operator+(v2d lhs, const v2d & rhs);

@@ -1,4 +1,5 @@
 #include "Vector2D.h"
+#include <iostream> // todo replace with logging lib
 
 double v2d::angle(){
   double ang = atan2(this->y, this->x);
@@ -7,6 +8,12 @@ double v2d::angle(){
 double v2d::length(){
   double len = sqrt(pow(this->x, 2) + pow(this->y, 2));
   return len;
+}
+
+v2d v2d::unit_vec_to(const v2d & vec){
+  auto dist = this->distance(vec);
+  auto vec_between = (*this - vec);
+  return 1.0/dist * vec_between;
 }
 
 double v2d::distance(const v2d & vec){
@@ -48,14 +55,15 @@ v2d operator*(double lhs, const v2d & rhs){
   return vec;
 }
 
+// double comparison things
 bool operator==(const v2d & lhs, const v2d & rhs){
-  return ((lhs.x - rhs.x == 0) && (lhs.y - rhs.y == 0));
+  return ((fabs(lhs.x - rhs.x) < 1e-10) && ((fabs(lhs.y - rhs.y) < 1e-10))); // could also just use distance and one thresh....
 }
 
 //outstream op overload for vectors
 std::ostream & operator<<(std::ostream & os, const v2d & v)
 {
-  os << "x: " << v.x << "\t";
+  os << "x: " << v.x << "  ";
   os << "y: " << v.y << "\n";
   return os;
 } 

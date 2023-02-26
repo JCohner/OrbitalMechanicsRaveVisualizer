@@ -12,7 +12,7 @@
 #include <queue>
 #include <memory>
 
-#include "entities/EntityObject.h"
+#include "shapes/Shape.h"
 
 class Canvas {
 private:
@@ -38,11 +38,11 @@ private:
   int WorkThread();
 
   // quue of objects to be rendered in render thread
-  std::vector<std::shared_ptr<Entity>> entity_queue_;
+  std::vector<std::shared_ptr<Shape>> entity_queue_;
 
 public:
   void StartWork() {work_thread_ = std::thread(&Canvas::WorkThread, this);}
-  void EnqueueEntity(std::shared_ptr<Entity> entity) {entity_queue_.push_back(entity);}
+  void EnqueueEntity(std::shared_ptr<Shape> entity) {entity_queue_.push_back(entity);}
   int CurrentHeight() {return current_height_;}
   int CurrentWidth() {return current_width_;}
   static Canvas* GetInstance(int w = 800, int h = 600);

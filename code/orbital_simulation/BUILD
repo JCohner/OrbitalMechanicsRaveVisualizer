@@ -16,6 +16,7 @@ cc_library(
   hdrs = ["Engine.h"],
   visibility = [
     "//orbital_simulation/tests:__pkg__",
+    "//main:__pkg__",
   ],
   deps = [
     ":orbital_state"
