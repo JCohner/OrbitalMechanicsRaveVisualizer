@@ -27,7 +27,14 @@ main:
 run:
 	@./bazel-bin/main/main || true
 
-
 .PHONY: clean
 clean:
 	@bazel clean
+
+.PHONY: visualize_deps
+visualize_deps:
+	@bazel query --noimplicit_deps 'deps(//main:mechanics_vis)' --output graph > simplified_graph.in
+	@dot -Tpng < simplified_graph.in> graph.png
+	@eog graph.png || true
+	@rm simplified_graph.in
+	@mv graph.png ../docs/
