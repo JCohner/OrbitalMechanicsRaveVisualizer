@@ -13,7 +13,7 @@ cc_library(
     "//shapes:shapes",  
     ],
   visibility = [
-    "//orbital_simulation/tests:__pkg__",
+    "//main:__pkg__",
   ]
 )
 

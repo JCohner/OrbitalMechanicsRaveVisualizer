@@ -10,6 +10,24 @@ engine-test:
 run-engine-test:
 	@./bazel-bin/orbital_simulation/tests/orbital_engine_test
 
+
+.PHONY: draw-test
+draw-test:
+	@bazel build //gl_visualizer:draw --verbose_failures
+
+.PHONY: run-draw-test
+run-draw-test:
+	@./bazel-bin/gl_visualizer/draw
+
+.PHONY: main
+main:
+	@bazel build //main:main --verbose_failures
+
+.PHONY: run
+run:
+	@./bazel-bin/main/main || true
+
+
 .PHONY: clean
 clean:
 	@bazel clean
