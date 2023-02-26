@@ -2,6 +2,8 @@
 #define __MECHANCIS_VISUALIZER_H__
 
 #include <thread>
+#include <memory>
+
 
 #include "gl_visualizer/Canvas.h"
 #include "shapes/Circle.h"
@@ -19,7 +21,12 @@ private:
 
   bool is_working_ = false;
 
+  Canvas* canv_; // TODO make smart pointer....
+  std::unique_ptr<Engine> eng_;
+  void EnqueueEntity(std::shared_ptr<Circle> circ);
+
 public:
+  void Setup(); // may be deprecated...
   void StartWork();
   void StopWork();
   bool IsWorking() {return is_working_;}

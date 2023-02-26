@@ -7,7 +7,9 @@ void Circle::Render(){
   https://docs.gl/gl3/glTranslate
   f the matrix mode is either GL_MODELVIEW or GL_PROJECTION, all objects drawn after a call to glTranslate are translated. 
   */
-  glTranslatef(centroid_.x, centroid_.y, 0.0f);  // Translate to (xPos, yPos)
+
+  auto cent = GetCentroid();
+  glTranslatef(cent.x, cent.y, 0.0f);  // Translate to (xPos, yPos)
   
   // Use triangular segments to form a circle
   glBegin(GL_TRIANGLE_FAN);

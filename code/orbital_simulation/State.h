@@ -10,7 +10,7 @@ enum struct ACCEL_MODE {ZERO = 0, INCREMENT = 1, ABS = 2};
 
 class State {
 private:
-  const double DELTA_T = 0.1; // debating if i want to go with chrono for this
+  const double DELTA_T = 0.0001; // debating if i want to go with chrono for this
   double mass_ = 0;
   v2d pos_ = {};
   v2d vel_ = {};
@@ -25,7 +25,6 @@ public:
 
   void SetAccel(enum ACCEL_MODE mode, v2d acc);
   void UpdateState();
-
 };
 
 

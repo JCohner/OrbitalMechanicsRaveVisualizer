@@ -23,6 +23,10 @@ run-draw-test:
 main:
 	@bazel build //main:main --verbose_failures
 
+.PHONY: main-debug
+main-debug:
+	@bazel build //main:main --verbose_failures --compilation_mode=dbg
+
 .PHONY: run
 run:
 	@./bazel-bin/main/main || true

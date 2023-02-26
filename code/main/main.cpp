@@ -14,6 +14,7 @@ void signalHandler( int signum ) {
 
 int main(int argc, char *argv[]){
   signal(SIGINT, signalHandler);  
+  mv.Setup();
   mv.StartWork();
   while (mv.IsWorking()){
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
