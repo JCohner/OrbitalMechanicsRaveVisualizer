@@ -42,7 +42,9 @@ private:
 
 public:
   void StartWork() {work_thread_ = std::thread(&Canvas::WorkThread, this);}
-  void EnqueueEntity(std::shared_ptr<Shape> entity) {entity_queue_.push_back(entity);}
+  void EnqueueEntity(std::shared_ptr<Shape> entity) {
+    entity_queue_.push_back(entity);
+  }
   int CurrentHeight() {return current_height_;}
   int CurrentWidth() {return current_width_;}
   static Canvas* GetInstance(int w = 800, int h = 600);
