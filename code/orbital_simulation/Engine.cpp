@@ -6,29 +6,38 @@
 
 
 void Engine::WorkFunction(){
-  auto compute_force = [](std::shared_ptr<State> s1, std::shared_ptr<State> s2){
+  // compute the acceleration object 2 induces upon object 1
+  // accel_1 = G * mass_2 * 1 / distance^2
+  auto compute_accel = [](std::shared_ptr<State> s1, std::shared_ptr<State> s2){
     const double G = 6.6742e-11;
-    auto dist = s1->GetPos().distance(s2->GetPos());
-    std::cout << "distance is: " << dist << std::endl;
-    return G * s1->GetMass() * s2->GetMass() / std::pow(dist, 2);
+    
+    auto scalar_dist = s1->GetPos().distance(s2->GetPos());
+    auto unit_vector = s1->GetPos().unit_vec_to(s2->GetPos());
+    auto grav_mass_mod_scalar = G * s2->GetMass();
+
+    std::cout << "distance between object is: " << scalar_dist << " on a unit vec: " << unit_vector << std::endl;
+    return  grav_mass_mod_scalar / std::pow(scalar_dist, 2) * unit_vector;
   };
 
   // todo find some smart way to do this using an adgency matrix
   for (auto ent : entity_queue_){
-    auto force_vec = v2d(); 
     std::cout << "loopin through boys: " << ent->GetMass() << std::endl;
     
     // zero out accel
-    ent->SetAccel(0);
+    ent->SetAccel(ACCEL_MODE::ZERO, {});
 
     // calculate effect of every other entity // TODO: use adgency matrix to make this better
     for (auto comp_ent : entity_queue_){
       if (ent == comp_ent){
         continue;
       }
-      std::cout << "\tcomparing to this john: " << compute_force(ent, comp_ent) << std::endl;
-    }
 
+      // vector representing accel due to object
+      auto accel_from_obj = compute_accel(ent, comp_ent);
+
+      // increment accel vector acting on entity
+      ent->SetAccel(ACCEL_MODE::INCREMENT, accel_from_obj);
+    }
   }
 }
 
