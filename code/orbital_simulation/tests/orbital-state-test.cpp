@@ -24,3 +24,9 @@ TEST(OrbitalSimState, StateConst) {
   EXPECT_EQ(s.GetAccel().y, 0);
   EXPECT_EQ(s.GetMass(), 10);
 }
+
+TEST(OrbitalSimState, SetStateAccel) {
+  auto q = State();
+  q.SetAccel(ACCEL_MODE::ABS, {2,2});
+  EXPECT_EQ(q.GetAccel(), v2d(2,2));
+}

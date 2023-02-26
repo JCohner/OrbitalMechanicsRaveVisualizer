@@ -5,6 +5,9 @@
 
 #include "lin_alg/Vector2D.h"
 
+// Enum for setting mode of SetAccel
+enum struct ACCEL_MODE {ZERO = 0, INCREMENT = 1, ABS = 2};
+
 class State {
 private:
   double mass_;
@@ -17,7 +20,12 @@ public:
   v2d GetPos() { return pos_;}
   v2d GetVel() { return vel_;}
   v2d GetAccel() { return acc_;}
+  void SetPos(v2d pos) { pos_ = pos;}
+  void SetVel(v2d vel) { vel_ = vel;}
+  void SetAccel(enum ACCEL_MODE mode, v2d acc);
   double GetMass() { return mass_;}
 };
+
+
 
 #endif /* __STATE_H__ */

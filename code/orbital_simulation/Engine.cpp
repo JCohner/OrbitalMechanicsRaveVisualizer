@@ -13,17 +13,22 @@ void Engine::WorkFunction(){
     return G * s1->GetMass() * s2->GetMass() / std::pow(dist, 2);
   };
 
-  // todo find some smart way to do this using an agency matrix
+  // todo find some smart way to do this using an adgency matrix
   for (auto ent : entity_queue_){
     auto force_vec = v2d(); 
     std::cout << "loopin through boys: " << ent->GetMass() << std::endl;
+    
+    // zero out accel
+    ent->SetAccel(0);
+
+    // calculate effect of every other entity // TODO: use adgency matrix to make this better
     for (auto comp_ent : entity_queue_){
       if (ent == comp_ent){
-        std::cout << "\tyeah fuckk (good variant)" << std::endl; 
         continue;
       }
       std::cout << "\tcomparing to this john: " << compute_force(ent, comp_ent) << std::endl;
     }
+
   }
 }
 
