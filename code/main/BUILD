@@ -13,5 +13,6 @@ cc_library(
   deps = [
     "//gl_visualizer:gl_visualizer",
     "//orbital_simulation:orbital_engine",
-  ]
+  ],
+  linkopts = ["-lpthread",],
 )
