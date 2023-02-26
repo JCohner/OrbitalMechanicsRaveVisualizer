@@ -18,3 +18,13 @@ void State::SetAccel(enum ACCEL_MODE mode, v2d acc) {
     break;
   } 
 }
+
+void State::UpdateState(){
+  // update velocity
+  // std::cout << "init vel: " << vel_ << "\r\n";
+  vel_ += vel_ + State::DELTA_T * acc_; // could use chrono for delta t calc...
+  // std::cout << "update vel: " << vel_ << "\r\n";
+  // std::cout << "init pos: " << pos_ << "\r\n";
+  pos_ += 0.5 * pow(State::DELTA_T, 2)* acc_  + State::DELTA_T * vel_;
+  std::cout << "update pos: " << pos_ << "\r\n";
+}

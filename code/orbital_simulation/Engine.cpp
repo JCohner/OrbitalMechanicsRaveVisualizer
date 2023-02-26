@@ -9,7 +9,7 @@ void Engine::WorkFunction(){
   // compute the acceleration object 2 induces upon object 1
   // accel_1 = G * mass_2 * 1 / distance^2
   auto compute_accel = [](std::shared_ptr<State> s1, std::shared_ptr<State> s2){
-    const double G = 6.6742e-11;
+    const double G = 0.005; // 6.6742e-11;
     
     auto scalar_dist = s1->GetPos().distance(s2->GetPos());
     auto unit_vector = s1->GetPos().unit_vec_to(s2->GetPos());
@@ -38,6 +38,9 @@ void Engine::WorkFunction(){
       // increment accel vector acting on entity
       ent->SetAccel(ACCEL_MODE::INCREMENT, accel_from_obj);
     }
+
+    // now do kinematics update:
+    ent->UpdateState();
   }
 }
 

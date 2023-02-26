@@ -1,4 +1,5 @@
 #include "Vector2D.h"
+#include <iostream> // todo replace with logging lib
 
 double v2d::angle(){
   double ang = atan2(this->y, this->x);
@@ -56,13 +57,13 @@ v2d operator*(double lhs, const v2d & rhs){
 
 // double comparison things
 bool operator==(const v2d & lhs, const v2d & rhs){
-  return ((abs(lhs.x - rhs.x) < 1e-10) && ((abs(lhs.y - rhs.y) < 1e-10)));
+  return ((fabs(lhs.x - rhs.x) < 1e-10) && ((fabs(lhs.y - rhs.y) < 1e-10))); // could also just use distance and one thresh....
 }
 
 //outstream op overload for vectors
 std::ostream & operator<<(std::ostream & os, const v2d & v)
 {
-  os << "x: " << v.x << "\t";
+  os << "x: " << v.x << "  ";
   os << "y: " << v.y << "\n";
   return os;
 } 

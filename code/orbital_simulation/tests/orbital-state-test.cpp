@@ -30,3 +30,13 @@ TEST(OrbitalSimState, SetStateAccel) {
   q.SetAccel(ACCEL_MODE::ABS, {2,2});
   EXPECT_EQ(q.GetAccel(), v2d(2,2));
 }
+
+TEST(OrbitalSimState, UpdateState) {
+  auto q = State();
+  q.SetAccel(ACCEL_MODE::ABS, {2,2});
+  // q's position is {0,0}, an accel of {1,1} will act on it for default: 0.1 s
+  q.UpdateState();
+
+  EXPECT_EQ(q.GetVel(), v2d(.2,.2));
+  EXPECT_EQ(q.GetPos(), v2d(.03,.03));
+}
