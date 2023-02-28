@@ -5,9 +5,6 @@ Canvas* Canvas::instance_= nullptr;;
 
 Canvas* Canvas::GetInstance(int w, int h){
     if(instance_ == nullptr){
-      #ifdef LOG
-        auto _ = fulfil::utils::Logger::Instance();
-      #endif
         instance_ = new Canvas(w, h);
     }
     return instance_;

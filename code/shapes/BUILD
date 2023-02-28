@@ -5,6 +5,7 @@ cc_library(
   hdrs = ["Shape.h"],
   deps = [
     "//lin_alg:lin_alg",
+    "//orbital_simulation:orbital_state",
   ],
   linkopts = ["-lglut",
             "-lGLU",
@@ -24,7 +25,6 @@ cc_library(
     ":shape",
   ],
   visibility = [
-    "//orbital_simulation/tests:__pkg__",
   ]
 )
 
@@ -34,5 +34,8 @@ cc_library(
   deps = [
     ":circle-shape",
   ],
-  visibility = ["//visibility:public"],
+  visibility = [
+    "//gl_visualizer:__pkg__",
+    "//shapes/tests:__pkg__",
+  ], # just for tests/draw
 )

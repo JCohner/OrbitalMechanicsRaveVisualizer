@@ -8,18 +8,8 @@
 #include "MechanicsVisualizer.h"
 
 void MechanicsVisualizer::DrawThread(){
-  //TODO replace with mouse / csv based insertion ASAP
-  auto ball_pos = v2d(250, 250);
-  auto ball = std::make_shared<Circle>(10, ball_pos);
+  canv_->StartWork();
 
-  auto ball_pos_2 = v2d(400, 250);
-  auto ball2 = std::make_shared<Circle>(35, ball_pos_2);
-
-  auto canv = Canvas::GetInstance();
-  canv->StartWork();
-
-  canv->EnqueueEntity(ball);
-  canv->EnqueueEntity(ball2);
   while(is_working_){
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
@@ -28,24 +18,33 @@ void MechanicsVisualizer::DrawThread(){
 void MechanicsVisualizer::PhysicsThread(){
   // random
   std::srand(std::time(nullptr)); // use current time as seed for random generator
-  auto s = new Engine();
-  s->StartWork();
-
-  auto rand_doub = [](){return ((float)std::rand()/((float)RAND_MAX)) * 100.0;}; 
-  auto rand_pos = [rand_doub]() {return v2d(rand_doub(),rand_doub());};
-
-  auto b = std::make_shared<State>(10, rand_pos());
-  auto c = std::make_shared<State>(5, rand_pos());
-  auto d = std::make_shared<State>(1, rand_pos());
-
-
-  s->EnqueueEntity(b);
-  s->EnqueueEntity(c);
-  s->EnqueueEntity(d);
+  eng_->StartWork();
 
   while(is_working_){
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
+}
+
+// this object doesn't itself maintain a queue but enqueues to relevant member objects
+void MechanicsVisualizer::EnqueueEntity(std::shared_ptr<Circle> circ){
+  canv_->EnqueueEntity(std::dynamic_pointer_cast<Shape>(circ));
+  eng_->EnqueueEntity(std::dynamic_pointer_cast<State>(circ));
+}
+
+void MechanicsVisualizer::Setup(){
+  // instanitalize both our member work objects
+  canv_ = Canvas::GetInstance();
+  eng_ = std::make_unique<Engine>();
+
+  //TODO replace with mouse / csv based insertion ASAP
+  auto ball_pos = v2d(250, 250);
+  auto ball = std::make_shared<Circle>(10, 10, ball_pos);
+
+  auto ball_pos_2 = v2d(400, 250);
+  auto ball2 = std::make_shared<Circle>(35, 10, ball_pos_2);
+
+  EnqueueEntity(ball);
+  EnqueueEntity(ball2);
 }
 
 void MechanicsVisualizer::StartWork(){
