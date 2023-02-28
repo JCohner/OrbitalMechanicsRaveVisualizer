@@ -9,7 +9,6 @@ cc_library(
               "-lpthread"
   ],
   deps = [
-    "//lin_alg:lin_alg",
     "//shapes:shapes",  
     ],
   visibility = [

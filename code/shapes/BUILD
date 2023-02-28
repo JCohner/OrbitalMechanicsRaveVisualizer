@@ -4,7 +4,6 @@ cc_library(
   srcs = ["Shape.cpp"],
   hdrs = ["Shape.h"],
   deps = [
-    "//lin_alg:lin_alg",
     "//orbital_simulation:orbital_state",
   ],
   linkopts = ["-lglut",
