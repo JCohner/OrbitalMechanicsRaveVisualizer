@@ -16,9 +16,12 @@
 
 class Canvas {
 private:
+
+  v2d frame_center = {0,0}; // in world frame coords
+
   // TODO: likely set by constructor params
   int current_width_ = 800;
-  int current_height_ = 600;
+  int current_height_ = 800;
 
   int window_handle_;
   unsigned frame_count_;
@@ -47,7 +50,7 @@ public:
   }
   int CurrentHeight() {return current_height_;}
   int CurrentWidth() {return current_width_;}
-  static Canvas* GetInstance(int w = 800, int h = 600);
+  static Canvas* GetInstance(int w = 800, int h = 800);
   Canvas(int width, int height) : current_width_(width), current_height_(height) {
     window_handle_ = 0;
     frame_count_ = 0;

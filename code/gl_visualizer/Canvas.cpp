@@ -59,7 +59,7 @@ void Canvas::InitWindow()
   glPointSize(5.0);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0.0, 499.0, 0.0, 499.0);
+  gluOrtho2D(0.0, current_width_, 0.0, current_height_);
 }
 
 // Unfortunately 

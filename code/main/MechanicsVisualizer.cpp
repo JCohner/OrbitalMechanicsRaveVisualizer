@@ -37,11 +37,11 @@ void MechanicsVisualizer::Setup(){
   eng_ = std::make_unique<Engine>();
 
   //TODO replace with mouse / csv based insertion ASAP
-  auto ball_pos = v2d(250, 250);
-  auto ball = std::make_shared<Circle>(10, 10, ball_pos);
+  auto ball_state = State(10, {250, 250}, {5, 10}, {0,0});
+  auto ball = std::make_shared<Circle>(10, ball_state);
 
-  auto ball_pos_2 = v2d(400, 250);
-  auto ball2 = std::make_shared<Circle>(35, 10, ball_pos_2);
+  auto ball2_state = State(10, {650, 650}, {-10, -10}, {0,0});
+  auto ball2 = std::make_shared<Circle>(10, ball2_state);
 
   EnqueueEntity(ball);
   EnqueueEntity(ball2);

@@ -17,14 +17,14 @@ void Engine::WorkFunction(){
 
     auto accel = grav_mass_mod_scalar * (1.0 / std::pow(scalar_dist, 2)) * unit_vector;
 
-    std::cout << "distance between object is: " << scalar_dist << " on a unit vec: " << unit_vector << "\r\n";
-    std::cout << "resultant accel: " << accel << std::endl;
+    std::cout << "\t\tdistance between object is: " << scalar_dist << " on a unit vec: " << unit_vector << "\r\n";
+    std::cout << "\t\tresultant accel: " << accel << "\r\n";
     return accel;
   };
 
   // todo find some smart way to do this using an adgency matrix
   for (auto e1 : entity_queue_){
-    std::cout << "loopin through boys: " << e1->GetMass() << std::endl;
+    std::cout << "\tLoopin ob Obj:" << e1->GetMass() << "\r\n";
     
     // zero out accel
     e1->SetAccel(ACCEL_MODE::ZERO, {});
@@ -42,6 +42,13 @@ void Engine::WorkFunction(){
       e1->SetAccel(ACCEL_MODE::INCREMENT, accel_from_obj);
     }
 
+    // edge_viscosity caluclation
+    auto damping_coeff = -5 * pow( (e1->GetPos().distance(v2d(400,400)) / 800.0) , 2); // damps as a function of distance from origin
+    std::cout << "\t\tdistance from center is: " << e1->GetPos().distance(v2d(400,400)) << " at vel: "<< e1->GetVel() << " which leads to a coeff: " << damping_coeff << "\r\n";
+    auto decel_from_edge_closeness = (1.0 / e1->GetMass()) * (damping_coeff * e1->GetVel());
+    std::cout << "\t\tinduced decell of: " << decel_from_edge_closeness << "\r\n";
+    e1->SetAccel(ACCEL_MODE::INCREMENT, decel_from_edge_closeness);
+
     // now do kinematics update:
     e1->UpdateState();
   }
@@ -54,9 +61,12 @@ void Engine::WorkThread() {
     // going to start by doing this in the dumbest possible way
     WorkFunction();
     end_ = std::chrono::steady_clock::now();
-    // holds to 1000
-    while (std::chrono::duration_cast<std::chrono::milliseconds>(end_ - start_).count() < 10){
+    auto timing_us = std::chrono::duration_cast<std::chrono::microseconds>(end_ - start_).count();
+    std::cout << "Work loop took: " << timing_us << "\r\n";
+    // holds to 1ms
+    while (timing_us < 1000){
       end_ = std::chrono::steady_clock::now();
+      timing_us = std::chrono::duration_cast<std::chrono::microseconds>(end_ - start_).count();
     }
     std::cin.get();
   }

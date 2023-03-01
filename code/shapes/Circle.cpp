@@ -15,7 +15,7 @@ void Circle::Render(){
   glBegin(GL_TRIANGLE_FAN);
     glColor3f(0.0f, 0.0f, 1.0f);  // Blue
     glVertex2f(0.0f, 0.0f);       // Center of circle in ball frame
-    int numSegments = 100;
+    int numSegments = 1000;
     GLfloat angle;
     for (int i = 0; i <= numSegments; i++) { // Last vertex same as first vertex
       glColor3f(0.0f, 0.0f, 1.0f);  // Blue

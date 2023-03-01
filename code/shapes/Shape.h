@@ -19,6 +19,9 @@ public:
   Shape (Shape::Type type, double mass, v2d pos) : State(mass, pos), type_(type){
     id_ = global_count++;
   }
+  Shape (Shape::Type type, State state) : State(state), type_(type){
+    id_ = global_count++;
+  }
   /* Accessors */
   Shape::Type GetType() {return type_;}
   v2d GetCentroid() {return GetPos();}
